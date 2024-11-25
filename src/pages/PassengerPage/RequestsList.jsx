@@ -8,7 +8,7 @@ function RequestsList() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await axios.get("https://reez-server.vercel.app/api/requests/passenger", {
+        const response = await axios.get("https://server.reez.uk/api/requests/passenger", {
           withCredentials: true, // Assuming authentication is required
         });
         setRequests(response.data.requests);

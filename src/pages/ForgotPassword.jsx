@@ -11,7 +11,7 @@ function ForgotPassword() {
 
   const handleSendOtp = async () => {
     try {
-      const response = await axios.post('https://reez-server.vercel.app/api/otp', { email});
+      const response = await axios.post('https://server.reez.uk/api/otp', { email});
       alert(`OTP sent to ${email}`);
       setServerOtp(response.data.otp); // Store the OTP (for development purposes; handle securely in production)
       console.log(response.data)
@@ -33,7 +33,7 @@ function ForgotPassword() {
     }
     try {
       // Simulate password reset
-      const response = await axios.post('https://reez-server.vercel.app/api/users/updatepassword', { email,newPassword:password  });
+      const response = await axios.post('https://server.reez.uk/api/users/updatepassword', { email,newPassword:password  });
       alert(`passsword updated`);
     } catch (error) {
       alert('Error resetting password');
