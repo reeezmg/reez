@@ -26,7 +26,7 @@ function App() {
     try {
       const decodedToken = jwtDecode(token);
       userType = decodedToken.userType;
-      console.log(userType)
+      console.log(decodedToken)
     } catch (error) {
       console.error('Invalid token:', error);
       Cookies.remove('token'); 
