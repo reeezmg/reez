@@ -10,7 +10,7 @@ function DriverRequests() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await axios.get('https://www.server.reez.uk/api/requests/driver', {
+        const response = await axios.get('https://server.reez.uk/api/requests/driver', {
           withCredentials: true,
         });
         setRequests(response.data.requests);
