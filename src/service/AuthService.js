@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/users'; // Update this URL if necessary
+const API_URL = 'https://reez-server.vercel.app/api/users'; // Update this URL if necessary
 
 class AuthService {
   // Register User

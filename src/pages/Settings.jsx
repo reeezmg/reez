@@ -19,7 +19,7 @@ const Settings = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/users/getuserinfo`,{
+        const response = await axios.get(`https://reez-server.vercel.app/api/users/getuserinfo`,{
           withCredentials: true, // Assuming authentication is required
         });
         setUser(response.data.user);
@@ -46,7 +46,7 @@ const Settings = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/users/`, user,{
+      await axios.put(`https://reez-server.vercel.app/api/users/`, user,{
         withCredentials: true, // Assuming authentication is required
       });
       alert("User details updated successfully.");

@@ -10,7 +10,7 @@ function DriverRequests() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/requests/driver', {
+        const response = await axios.get('https://reez-server.vercel.app/api/requests/driver', {
           withCredentials: true,
         });
         setRequests(response.data.requests);

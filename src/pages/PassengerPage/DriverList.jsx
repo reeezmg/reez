@@ -33,7 +33,7 @@ function DriverList() {
 
   const fetchDrivers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/drivers');
+      const response = await axios.get('https://reez-server.vercel.app/api/drivers');
       setDrivers(response.data.drivers);
       console.log(response)
       setFilteredDrivers(response.data.drivers);
@@ -61,7 +61,7 @@ function DriverList() {
         .join('&');
 
       const response = await axios.get(
-        `http://localhost:5000/api/drivers${queryParams ? `?${queryParams}` : ''}`
+        `https://reez-server.vercel.app/api/drivers${queryParams ? `?${queryParams}` : ''}`
       );
       setFilteredDrivers(response.data.drivers);
       setNearLocation(response.data.nearLocation)
@@ -85,7 +85,7 @@ function DriverList() {
       }
 
       const response = await axios.post(
-        'http://localhost:5000/api/requests',
+        'https://reez-server.vercel.app/api/requests',
         {
           driverId: selectedDriver._id,
           days: selectedDays,
