@@ -11,7 +11,7 @@ function Login() {
     try {
       const response = await AuthService.login({ email, password });
       alert(`Login successful! Welcome to Reez`);
-      // window.location.reload()
+      window.location.reload()
 
     } catch (error) {
       alert(error.message || 'Error logging in');
