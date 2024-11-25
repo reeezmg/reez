@@ -42,7 +42,7 @@ class AuthService {
     // Clear the 'token' cookie by setting an expired date
     Cookies.remove('token', { path: '/', domain: '.reez.uk' });
   }
-       
+             
   // Get stored token
   static getToken() {
     return localStorage.getItem('token');
