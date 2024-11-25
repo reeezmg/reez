@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-const API_URL = 'https://server.reez.uk/api/users'; // Update this URL if necessary
+const API_URL = 'https://www.server.reez.uk/api/users'; // Update this URL if necessary
 
 class AuthService {
   // Register User

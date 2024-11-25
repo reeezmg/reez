@@ -17,7 +17,7 @@ function DriverInfo() {
   useEffect(() => {
     const fetchDriverInfo = async () => {
       try {
-        const response = await axios.get(`https://server.reez.uk/api/drivers/getdriverinfo`, {
+        const response = await axios.get(`https://www.server.reez.uk/api/drivers/getdriverinfo`, {
           withCredentials: true,
         });
 
@@ -54,7 +54,7 @@ function DriverInfo() {
     if (id) {
       // Only call the API if the pickup point has an ID
       try {
-        await axios.delete(`https://server.reez.uk/api/drivers/pickuppoint/${id}`, {
+        await axios.delete(`https://www.server.reez.uk/api/drivers/pickuppoint/${id}`, {
           withCredentials: true,
         });
         alert('Pickup point removed successfully');
@@ -84,7 +84,7 @@ function DriverInfo() {
         rotaType,
       };
 
-      await axios.put('https://server.reez.uk/api/drivers/update', driverInfo, {
+      await axios.put('https://www.server.reez.uk/api/drivers/update', driverInfo, {
         withCredentials: true,
       });
 
