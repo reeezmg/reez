@@ -19,12 +19,14 @@ import Settings from './pages/Settings';
 function App() {
   // Check if there is a token and decode it to get the userType
   const token = Cookies.get('token');
+  console.log(token)
   let userType = null;
 
   if (token) {
     try {
       const decodedToken = jwtDecode(token);
       userType = decodedToken.userType;
+      console.log(userType)
     } catch (error) {
       console.error('Invalid token:', error);
       Cookies.remove('token'); 
