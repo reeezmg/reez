@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import './modal.css'
 
 const Modal = ({ showModal, handleCloseModal, children }) => {
   const modalRef = useRef(null);
@@ -9,23 +8,28 @@ const Modal = ({ showModal, handleCloseModal, children }) => {
       handleCloseModal();
     }
   };
-  useEffect(() => {
-    // Add event listener to listen for mousedown events on the document
-    document.addEventListener('mousedown', handleClickOutsideModal);
 
-    // Remove the event listener when the component is unmounted
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutsideModal);
     return () => {
       document.removeEventListener('mousedown', handleClickOutsideModal);
     };
   }, []);
+
   return (
     <>
       {showModal && (
-        <div className="modal">
-          <div ref={modalRef} className="modal-content">
-            <span className="close" onClick={handleCloseModal}>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div
+            ref={modalRef}
+            className="bg-white p-6 rounded-lg shadow-lg max-h-[80vh] overflow-y-auto flex flex-col items-center relative"
+          >
+            <button
+              className="absolute top-3 right-3 text-2xl font-bold text-gray-700 hover:text-gray-900"
+              onClick={handleCloseModal}
+            >
               &times;
-            </span>
+            </button>
             {children}
           </div>
         </div>

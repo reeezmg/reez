@@ -7,8 +7,6 @@ function Registration() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('Passenger');
-  const [location, setLocation] = useState('');
   const navigate = useNavigate(); 
 
   const handleRegister = async () => {
@@ -17,11 +15,9 @@ function Registration() {
         name,
         email,
         password,
-        userType,
-        location,
       });
       alert(
-        `Registration successful! You are registered as a ${userType} at ${location}`
+        `Registration successful!`
       );
       window.location.reload()
       // Redirect to a different page, e.g., login
@@ -35,7 +31,7 @@ function Registration() {
       {/* Top Bar */}
       <header className="bg-white shadow">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-blue-600" onClick={() => navigate('/')} >Reez</h1>
+          <h1 className="text-2xl font-bold text-blue-600" onClick={() => navigate('/')} >Tapster</h1>
           <div className="space-x-4">
             <Link
               to="/login"
@@ -57,7 +53,7 @@ function Registration() {
       <div className="flex items-center justify-center mt-4 min-h-[calc(100vh-80px)]">
         <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
           <h1 className="text-2xl font-bold text-center mb-6">
-            Register {location && `at ${location}`}
+            Register
           </h1>
           <div className="space-y-4">
             <div>
@@ -108,40 +104,7 @@ function Registration() {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
-            <div>
-              <label
-                htmlFor="userType"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Select User Type
-              </label>
-              <select
-                id="userType"
-                value={userType}
-                onChange={(e) => setUserType(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              >
-                <option value="Passenger">Passenger</option>
-                <option value="Driver">Driver</option>
-              </select>
-            </div>
-            <div>
-              <label
-                htmlFor="location"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Select Location
-              </label>
-              <select
-                id="location"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              >
-                <option value="">Select Location</option>
-                <option value="Frasers (Shirebrook)">Frasers (Shirebrook)</option>
-              </select>
-            </div>
+           
             <button
               onClick={handleRegister}
               className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition duration-200"

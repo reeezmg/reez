@@ -1,94 +1,77 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import './App.css';
-import DriverInfo from './pages/DriverPage/DriverInfo';
-import DriverList from './pages/PassengerPage/DriverList';
-import RequestsList from './pages/PassengerPage/RequestsList';
-import Notifications from './pages/PassengerPage/Notification';
 import ForgotPassword from './pages/ForgotPassword';
 import Sidebar from './components/Sidebar';
-import SidebarDriver from './components/SidebarDriver';
-import DriverRequests from './pages/DriverPage/DriverRequests';
 import Settings from './pages/Settings';
+import EditCardPage from './pages/Cardedit/EditCard';
+import DesignSelectionPage from './pages/Cardedit/DesignSelection';
+import CardDetails from './pages/Cardedit/CardDetails';
+import HomePage from './pages/HomePage';
+import Step2 from './pages/CardLanding/Step2';
+import Response from './pages/Response';
+import Pay from './pages/Pay';
 
 function App() {
-  // Check if there is a token and decode it to get the userType
+  // Check if there is a token
   const token = Cookies.get('token');
-  console.log(token)
-  let userType = null;
 
-  if (token) {
-    try {
-      const decodedToken = jwtDecode(token);
-      userType = decodedToken.userType;
-      console.log(decodedToken)
-    } catch (error) {
-      console.error('Invalid token:', error);
-      Cookies.remove('token'); 
-    }
-  }
+  // Public Routes (Accessible to everyone)
+  let publicRoute = (
+    <Routes>
+      <Route path="/response/:uname" element={<Response />} />
+    </Routes>
+  );
 
+  // Authentication Routes (For unauthenticated users)
   let authRoute = (
     <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Registration />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
-  </Routes>
-  )
+      <Route path="/" element={<Landing />} />
+       <Route path="/response/:uname" element={<Response />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Registration />} />
+      <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
+  );
 
-  let driverRoute = (
+  // Client Routes (For authenticated users)
+  let clientRoute = (
     <Routes>
-    <Route path="/" element={<Landing />} />
-    <Route path="/driver" element={<DriverInfo />} />
-    <Route path="/driver/requests" element={<DriverRequests />} />
-    <Route path="/settings" element={<Settings />} />
-    <Route path="*" element={<Navigate to="/driver" replace />} />
-  </Routes>
-  )
+     <Route path="/response/:uname" element={<Response />} />
+      <Route path="/" element={<Landing />} />
+      <Route path="/client" element={<HomePage />} />
+      <Route path="/client/design" element={<DesignSelectionPage />} />
+      <Route path="/client/step1/:id" element={<EditCardPage />} />
+      <Route path="/client/step2/:id" element={<Step2 />} />
+      <Route path="/client/settings" element={<Settings />} />
+      <Route path="/client/pay/:id" element={<Pay />} />
+      <Route path="*" element={<Navigate to="/client" replace />} />
+    </Routes>
+  );
 
-  let passengerRoute = (
-    <Routes>
-    <Route path="/" element={<Landing />} />
-    <Route path="/passenger" element={<DriverList />} />
-    <Route path="/passenger/requests" element={<RequestsList />} />
-    <Route path="/passenger/notifications" element={<Notifications />} />
-    <Route path="/settings" element={<Settings />} />
-    <Route path="*" element={<Navigate to="/passenger" replace />} />
-  </Routes>
-  )
-
-  if(userType === 'Driver'){
-    return(
-      <div>
-        <SidebarDriver/>
-        {driverRoute}
-      </div>
-    )
-  }
-  else if(userType === 'Passenger'){
+   if(token){
     return(
       <div>
         <Sidebar/>
-        {passengerRoute}
+        <div className=' mt-14'>
+        {clientRoute}
+        </div>
+        
       </div>
     )
-  }else{
+  }
     return(
       <div>
     {authRoute}
   </div>
     )
     
-  }
-   
-
 }
 
 export default App;
